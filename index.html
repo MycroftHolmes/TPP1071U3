@@ -1,0 +1,5266 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Mobile Web App</title>
+<link href="jquery.mobile.theme-1.3.0.min.css" rel="stylesheet" type="text/css"/>
+<link href="jquery.mobile.structure-1.3.0.min.css" rel="stylesheet" type="text/css"/>
+<link href="mycss.css" rel="stylesheet" type="text/css"/>
+<script src="jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="jquery.mobile-1.3.0.min.js" type="text/javascript"></script>
+<script src="TPP1071U3.js" type="text/javascript"></script>
+</head> 
+<body> 
+
+<script>
+	
+	var g3counter = 0;
+	var g3word ="";
+	var randomNumber = 0;
+	var word = "";
+	var g3score = 0;
+	var g3unscrambled = "";
+	var vowelword = "";
+	var g4score = 0;
+	var g4highscore = 0;
+	var g4counter = 0;
+	var picnumb = 0;
+	var g5score = 0;
+	var g5highscore = 0;
+	var g5fair = 0;
+	var g2score = 0;
+	var g2highscore = 0;
+	var g2word = 0;
+	var g2name = "";
+	
+
+var Hint = new Array ();
+	Hint [0] = "The fireman <em> rescued</em> the man from the fire."; //Rescue1
+	Hint [1] = "syn. 'save'";		//Rescue2
+	Hint [2] = "تفاحه";//Rescue 3
+	Hint [3] = "There was a quick _______ to the oil spill."; //Response1
+	Hint [4] = "syn. 'reply'"; //Response2
+	Hint [5] = "Response Arabic Translation"; //Response3
+	Hint [6] = "Abulla will _______ to the question."; //Respond1
+	Hint [7] = "syn. 'answer'"; //Respond2
+	Hint [8] = "Respond Arabic trans"; //Respond3
+	Hint [9] = "The ____ ___ destroyed the refinery."; //Blow out1
+	Hint [10] = "syn. 'explosion'"; //Blow out2
+	Hint [11] = "Blow out Arabic Translation"; //Blow out3
+	Hint [12] = "There are many gauges and computers in the _____ _____."; //Control Room1
+	Hint [13] = "syn. 'headquarters'"; //Control Room2
+	Hint [14] = "Control Room Arabic Translation"; //Control Room3
+	Hint [15] = "A wet floor was the _____ of the accident."; //Cause1
+	Hint [16] = "syn. 'reason for'"; //Cause2
+	Hint [17] = "Cause Arabic trans."; //Cause3
+	Hint [18] = "The security guards will ________ the incident."; //Investigate1
+	Hint [19] = "syn. 'examine'"; //Investigate2
+	Hint [20] = "Investigate Arabic trans."; //Investigate3
+	Hint [21] = "The teachers will _______ the students of the final exam time."; //Inform 1
+	Hint [22] = "syn. 'notify'"; //Inform 2
+	Hint [23] = "Inform Arabic trans."; //Inform 3 
+	Hint [24] = "Massoud is the boss, so he must ______ the company."; //Manage 1
+	Hint [25] = "syn. 'control'"; //Manage 2
+	Hint [26] = "Manage Arabic trans."; //Manage 3 
+	Hint [27] = "A policeman must _____ quickly to a problem."; //React 1
+	Hint [28] = "<br/>syn. 'respond'"; //React 2
+	Hint [29] = "فعل"; //React 3 
+	Hint [30] = "He was hurt on the job. He ______ his arm."; //Injured 1
+	Hint [31] = "syn. 'hurt'"; //Injured 2
+	Hint [32] = "Injured Arabic trans."; //Injured 3 
+	Hint [33] = "The housekeeper's job is to ______ __ cooking and cleaning."; //Attend to 1
+	Hint [34] = "syn. 'do'"; //Attend to 2
+	Hint [35] = "Attend to Arabic trans."; //Attend to 3 
+	Hint [36] = "The sailboat has a six-person _____."; //Crew 1
+	Hint [37] = "syn. 'team'"; //Crew 2
+	Hint [38] = "Crew Arabic trans."; //Crew 3 
+	Hint [39] = "The letters of my name are _______: DBALU. My name is Abdul."; //Scramble 1
+	Hint [40] = "syn. 'mixed'"; //Scramble 2
+	Hint [41] = "Scramble Arabic trans."; //Scramble 3 
+	Hint [42] = "Dolphin Energy is building a _______ from Qatar to the UAE."; //Pipeline 1
+	Hint [43] = "syn. 'tube'"; //Pipeline 2
+	Hint [44] = "Pipline Arabic Translation"; //Pipeline 3 
+	Hint [45] = "We have a new receptionist. His job is to _____ telephone calls."; //To Handle 1
+	Hint [46] = "syn. 'take care of'"; //To Handle 2
+	Hint [47] = "To Handle Arabic Trans."; //To Handle 3 
+	Hint [48] = "I cannot hear the music. Could you _____ the volume?"; //Increase 1
+	Hint [49] = "syn. 'make bigger'"; //Increase 2
+	Hint [50] = "Increase Arabic Trans."; //Increase 3 
+	Hint [51] = "The security guard's job is to ______ the hallways."; //Patrol 1
+	Hint [52] = "syn. 'watch'"; //Patrol 2
+	Hint [53] = "Patrol Arabic trans."; //Patrol 3 
+	Hint [54] = "The fireman ordered everyone to leave the ______."; //Premises 1
+	Hint [55] = "syn. 'place'"; //Premises 2
+	Hint [56] = "Premises Arabic trans."; //Premises 3
+	Hint [57] = "Policemen must ______ thieves."; //Arrest 1
+	Hint [58] = "syn. 'apprehend', 'catch'"; //Arrest 2
+	Hint [59] = "Arrest Arabic Trans."; //Arrest 3
+	Hint [60] = "There is a _____ to keep people out of the refinery."; //Fence 1
+	Hint [61] = "syn. 'wall'"; //Fence 2
+	Hint [62] = "Fence Arabic Trans."; //Fence 3
+	
+
+function please()
+	{
+	document.getElementById("lex0").innerHTML = newWord[0];	
+	document.getElementById("lex1").innerHTML = newWord[1];
+	document.getElementById("lex2").innerHTML = newWord[2];	
+	document.getElementById("lex3").innerHTML = newWord[3];
+	document.getElementById("lex4").innerHTML = newWord[4];	
+	document.getElementById("lex5").innerHTML = newWord[5];
+	document.getElementById("lex6").innerHTML = newWord[6];	
+	document.getElementById("lex7").innerHTML = newWord[7];
+	document.getElementById("lex8").innerHTML = newWord[8];	
+	document.getElementById("lex9").innerHTML = newWord[9];
+	document.getElementById("lex10").innerHTML = newWord[10];	
+	document.getElementById("lex11").innerHTML = newWord[11];
+	document.getElementById("lex12").innerHTML = newWord[12];	
+	document.getElementById("lex13").innerHTML = newWord[13];
+	document.getElementById("lex14").innerHTML = newWord[14];	
+	document.getElementById("lex15").innerHTML = newWord[15];
+	document.getElementById("lex16").innerHTML = newWord[16];
+	document.getElementById("lex17").innerHTML = newWord[17];
+	document.getElementById("lex18").innerHTML = newWord[18];
+	document.getElementById("lex19").innerHTML = newWord[19];
+	/*
+	document.getElementById("lex20").innerHTML = newWord[20];
+	document.getElementById("lex21").innerHTML = newWord[21];
+	document.getElementById("lex22").innerHTML = newWord[22];
+	document.getElementById("lex23").innerHTML = newWord[23];
+	document.getElementById("lex24").innerHTML = newWord[24];
+	document.getElementById("lex25").innerHTML = newWord[25];
+	*/
+	
+	document.getElementById("lex0z").innerHTML = newWord[0];
+	document.getElementById("lex1z").innerHTML = newWord[1];
+	document.getElementById("lex2z").innerHTML = newWord[2];
+	document.getElementById("lex3z").innerHTML = newWord[3];
+	document.getElementById("lex4z").innerHTML = newWord[4];
+	document.getElementById("lex5z").innerHTML = newWord[5];
+	document.getElementById("lex6z").innerHTML = newWord[6];
+	document.getElementById("lex7z").innerHTML = newWord[7];
+	document.getElementById("lex8z").innerHTML = newWord[8];
+	document.getElementById("lex9z").innerHTML = newWord[9];
+	document.getElementById("lex10z").innerHTML = newWord[10];
+	document.getElementById("lex11z").innerHTML = newWord[11];
+	document.getElementById("lex12z").innerHTML = newWord[12];
+	document.getElementById("lex13z").innerHTML = newWord[13];
+	document.getElementById("lex14z").innerHTML = newWord[14];
+	document.getElementById("lex15z").innerHTML = newWord[15];
+	document.getElementById("lex16z").innerHTML = newWord[16];
+	document.getElementById("lex17z").innerHTML = newWord[17];
+	document.getElementById("lex18z").innerHTML = newWord[18];
+	document.getElementById("lex19z").innerHTML = newWord[19];
+	/*
+	document.getElementById("lex20z").innerHTML = newWord[20];
+	document.getElementById("lex21z").innerHTML = newWord[21];
+	document.getElementById("lex22z").innerHTML = newWord[22];
+	document.getElementById("lex23z").innerHTML = newWord[23];
+	document.getElementById("lex24z").innerHTML = newWord[24];
+	document.getElementById("lex25z").innerHTML = newWord[25];
+	*/
+	
+	document.getElementById("g5lex0").innerHTML = newWord[0];
+	document.getElementById("g5lex1").innerHTML = newWord[1];
+	document.getElementById("g5lex2").innerHTML = newWord[2];
+	document.getElementById("g5lex3").innerHTML = newWord[3];
+	document.getElementById("g5lex4").innerHTML = newWord[4];
+	document.getElementById("g5lex5").innerHTML = newWord[5];
+	document.getElementById("g5lex6").innerHTML = newWord[6];
+	document.getElementById("g5lex7").innerHTML = newWord[7];
+	document.getElementById("g5lex8").innerHTML = newWord[8];
+	document.getElementById("g5lex9").innerHTML = newWord[9];
+	document.getElementById("g5lex10").innerHTML = newWord[10];
+	document.getElementById("g5lex11").innerHTML = newWord[11];
+	document.getElementById("g5lex12").innerHTML = newWord[12];
+	document.getElementById("g5lex13").innerHTML = newWord[13];
+	document.getElementById("g5lex14").innerHTML = newWord[14];
+	document.getElementById("g5lex15").innerHTML = newWord[15];
+	document.getElementById("g5lex16").innerHTML = newWord[16];
+	document.getElementById("g5lex17").innerHTML = newWord[17];
+	document.getElementById("g5lex18").innerHTML = newWord[18];
+	document.getElementById("g5lex19").innerHTML = newWord[19];
+	/*
+	document.getElementById("g5lex20").innerHTML = newWord[20];
+	document.getElementById("g5lex21").innerHTML = newWord[21];
+	document.getElementById("g5lex22").innerHTML = newWord[22];
+	document.getElementById("g5lex23").innerHTML = newWord[23];
+	document.getElementById("g5lex24").innerHTML = newWord[24];
+	document.getElementById("g5lex25").innerHTML = newWord[25];
+	*/
+	
+	document.getElementById("g2lex0").innerHTML = newWord[0];
+	document.getElementById("g2lex1").innerHTML = newWord[1];
+	document.getElementById("g2lex2").innerHTML = newWord[2];
+	document.getElementById("g2lex3").innerHTML = newWord[3];
+	document.getElementById("g2lex4").innerHTML = newWord[4];
+	document.getElementById("g2lex5").innerHTML = newWord[5];
+	document.getElementById("g2lex6").innerHTML = newWord[6];
+	document.getElementById("g2lex7").innerHTML = newWord[7];
+	document.getElementById("g2lex8").innerHTML = newWord[8];
+	document.getElementById("g2lex9").innerHTML = newWord[9];
+	document.getElementById("g2lex10").innerHTML = newWord[10];
+	document.getElementById("g2lex11").innerHTML = newWord[11];
+	document.getElementById("g2lex12").innerHTML = newWord[12];
+	document.getElementById("g2lex13").innerHTML = newWord[13];
+	document.getElementById("g2lex14").innerHTML = newWord[14];
+	document.getElementById("g2lex15").innerHTML = newWord[15];
+	document.getElementById("g2lex16").innerHTML = newWord[16];
+	document.getElementById("g2lex17").innerHTML = newWord[17];
+	document.getElementById("g2lex18").innerHTML = newWord[18];
+	document.getElementById("g2lex19").innerHTML = newWord[19];
+	/*
+	document.getElementById("g2lex20").innerHTML = newWord[20];
+	document.getElementById("g2lex21").innerHTML = newWord[21];
+	document.getElementById("g2lex22").innerHTML = newWord[22];
+	document.getElementById("g2lex23").innerHTML = newWord[23];
+	document.getElementById("g2lex24").innerHTML = newWord[24];
+	document.getElementById("g2lex25").innerHTML = newWord[25];
+	*/
+	
+	document.getElementById("pos0").innerHTML = pos[0];
+	document.getElementById("pos1").innerHTML = pos[1];
+	document.getElementById("pos2").innerHTML = pos[2];
+	document.getElementById("pos3").innerHTML = pos[3];
+	document.getElementById("pos4").innerHTML = pos[4];
+	document.getElementById("pos5").innerHTML = pos[5];
+	document.getElementById("pos6").innerHTML = pos[6];
+	document.getElementById("pos7").innerHTML = pos[7];
+	document.getElementById("pos8").innerHTML = pos[8];
+	document.getElementById("pos9").innerHTML = pos[9];
+	document.getElementById("pos10").innerHTML = pos[10];
+	document.getElementById("pos11").innerHTML = pos[11];
+	document.getElementById("pos12").innerHTML = pos[12];
+	document.getElementById("pos13").innerHTML = pos[13];
+	document.getElementById("pos14").innerHTML = pos[14];
+	document.getElementById("pos15").innerHTML = pos[15];
+	document.getElementById("pos16").innerHTML = pos[16];
+	document.getElementById("pos17").innerHTML = pos[17];
+	document.getElementById("pos18").innerHTML = pos[18];
+	document.getElementById("pos19").innerHTML = pos[19];
+	/*
+	document.getElementById("pos20").innerHTML = pos[20];
+	document.getElementById("pos21").innerHTML = pos[21];
+	document.getElementById("pos22").innerHTML = pos[22];
+	document.getElementById("pos23").innerHTML = pos[23];
+	document.getElementById("pos24").innerHTML = pos[24];
+	document.getElementById("pos25").innerHTML = pos[25];
+	*/
+	
+	document.getElementById("def0").innerHTML = def[0];
+	document.getElementById("def1").innerHTML = def[1];
+	document.getElementById("def2").innerHTML = def[2];
+	document.getElementById("def3").innerHTML = def[3];
+	document.getElementById("def4").innerHTML = def[4];
+	document.getElementById("def5").innerHTML = def[5];
+	document.getElementById("def6").innerHTML = def[6];
+	document.getElementById("def7").innerHTML = def[7];
+	document.getElementById("def8").innerHTML = def[8];
+	document.getElementById("def9").innerHTML = def[9];
+	document.getElementById("def10").innerHTML = def[10];
+	document.getElementById("def11").innerHTML = def[11];
+	document.getElementById("def12").innerHTML = def[12];
+	document.getElementById("def13").innerHTML = def[13];
+	document.getElementById("def14").innerHTML = def[14];
+	document.getElementById("def15").innerHTML = def[15];
+	document.getElementById("def16").innerHTML = def[16];
+	document.getElementById("def17").innerHTML = def[17];
+	document.getElementById("def18").innerHTML = def[18];
+	document.getElementById("def19").innerHTML = def[19];
+	/*
+	document.getElementById("def20").innerHTML = def[20];
+	document.getElementById("def21").innerHTML = def[21];
+	document.getElementById("def22").innerHTML = def[22];
+	document.getElementById("def23").innerHTML = def[23];
+	document.getElementById("def24").innerHTML = def[24];
+	document.getElementById("def25").innerHTML = def[25];
+	*/
+	
+	document.getElementById("xtra0").innerHTML = xtra[0];
+	document.getElementById("xtra1").innerHTML = xtra[1];
+	document.getElementById("xtra2").innerHTML = xtra[2];
+	document.getElementById("xtra3").innerHTML = xtra[3];
+	document.getElementById("xtra4").innerHTML = xtra[4];
+	document.getElementById("xtra5").innerHTML = xtra[5];
+	document.getElementById("xtra6").innerHTML = xtra[6];
+	document.getElementById("xtra7").innerHTML = xtra[7];
+	document.getElementById("xtra8").innerHTML = xtra[8];
+	document.getElementById("xtra9").innerHTML = xtra[9];
+	document.getElementById("xtra10").innerHTML = xtra[10];
+	document.getElementById("xtra11").innerHTML = xtra[11];
+	document.getElementById("xtra12").innerHTML = xtra[12];
+	document.getElementById("xtra13").innerHTML = xtra[13];
+	document.getElementById("xtra14").innerHTML = xtra[14];
+	document.getElementById("xtra15").innerHTML = xtra[15];
+	document.getElementById("xtra16").innerHTML = xtra[16];
+	document.getElementById("xtra17").innerHTML = xtra[17];
+	document.getElementById("xtra18").innerHTML = xtra[18];
+	document.getElementById("xtra19").innerHTML = xtra[19];
+	/*
+	document.getElementById("xtra20").innerHTML = xtra[20];
+	document.getElementById("xtra21").innerHTML = xtra[21];
+	document.getElementById("xtra22").innerHTML = xtra[22];
+	document.getElementById("xtra23").innerHTML = xtra[23];
+	document.getElementById("xtra24").innerHTML = xtra[24];
+	document.getElementById("xtra25").innerHTML = xtra[25];
+	*/
+	
+	document.getElementById("lex0a").innerHTML = newWord[0];
+	document.getElementById("lex1a").innerHTML = newWord[1];
+	document.getElementById("lex2a").innerHTML = newWord[2];
+	document.getElementById("lex3a").innerHTML = newWord[3];
+	document.getElementById("lex4a").innerHTML = newWord[4];
+	document.getElementById("lex5a").innerHTML = newWord[5];
+	document.getElementById("lex6a").innerHTML = newWord[6];
+	document.getElementById("lex7a").innerHTML = newWord[7];
+	document.getElementById("lex8a").innerHTML = newWord[8];
+	document.getElementById("lex9a").innerHTML = newWord[9];
+	document.getElementById("lex10a").innerHTML = newWord[10];
+	document.getElementById("lex11a").innerHTML = newWord[11];
+	document.getElementById("lex12a").innerHTML = newWord[12];
+	document.getElementById("lex13a").innerHTML = newWord[13];
+	document.getElementById("lex14a").innerHTML = newWord[14];
+	document.getElementById("lex15a").innerHTML = newWord[15];
+	document.getElementById("lex16a").innerHTML = newWord[16];
+	document.getElementById("lex17a").innerHTML = newWord[17];
+	document.getElementById("lex18a").innerHTML = newWord[18];
+	document.getElementById("lex19a").innerHTML = newWord[19];
+	/*
+	document.getElementById("lex20a").innerHTML = newWord[20];
+	document.getElementById("lex21a").innerHTML = newWord[21];
+	document.getElementById("lex22a").innerHTML = newWord[22];
+	document.getElementById("lex23a").innerHTML = newWord[23];
+	document.getElementById("lex24a").innerHTML = newWord[24];
+	document.getElementById("lex25a").innerHTML = newWord[25];	
+	*/
+	
+	document.getElementById("hint0").innerHTML = sent[0];
+	//document.getElementById("hint0a").innerHTML = Hint[1];
+	document.getElementById("hint0b").innerHTML = arabic[0];
+	document.getElementById("hint1").innerHTML = sent[1];
+	//document.getElementById("hint1a").innerHTML = Hint[4];
+	document.getElementById("hint1b").innerHTML = arabic[1];	
+	document.getElementById("hint2").innerHTML = sent[2];
+	//document.getElementById("hint2a").innerHTML = Hint[7];
+	document.getElementById("hint2b").innerHTML = arabic[2];
+	document.getElementById("hint3").innerHTML = sent[3];
+	//document.getElementById("hint3a").innerHTML = Hint[10];
+	document.getElementById("hint3b").innerHTML = arabic[3];
+	document.getElementById("hint4").innerHTML = sent[4];
+	//document.getElementById("hint4a").innerHTML = Hint[13];
+	document.getElementById("hint4b").innerHTML = arabic[4];
+	document.getElementById("hint5").innerHTML = sent[5];
+	//document.getElementById("hint5a").innerHTML = Hint[16];
+	document.getElementById("hint5b").innerHTML = arabic[5];
+	document.getElementById("hint6").innerHTML = sent[6];
+	//document.getElementById("hint6a").innerHTML = Hint[19];
+	document.getElementById("hint6b").innerHTML = arabic[6];
+	document.getElementById("hint7").innerHTML = sent[7];
+	//document.getElementById("hint7a").innerHTML = Hint[22];
+	document.getElementById("hint7b").innerHTML = arabic[7];
+	document.getElementById("hint8").innerHTML = sent[8];
+	//document.getElementById("hint8a").innerHTML = Hint[25];
+	document.getElementById("hint8b").innerHTML = arabic[8];
+	document.getElementById("hint9").innerHTML = sent[9];
+	//document.getElementById("hint9a").innerHTML = Hint[28];
+	document.getElementById("hint9b").innerHTML = arabic[9];
+	document.getElementById("hint10").innerHTML = sent[10];
+	//document.getElementById("hint10a").innerHTML = Hint[31];
+	document.getElementById("hint10b").innerHTML = arabic[10];
+	document.getElementById("hint11").innerHTML = sent[11];
+	//document.getElementById("hint11a").innerHTML = Hint[34];
+	document.getElementById("hint11b").innerHTML = arabic[11];
+	document.getElementById("hint12").innerHTML = sent[12];
+	//document.getElementById("hint12a").innerHTML = Hint[37];
+	document.getElementById("hint12b").innerHTML = arabic[12];
+	document.getElementById("hint13").innerHTML = sent[13];
+	//document.getElementById("hint13a").innerHTML = Hint[40];
+	document.getElementById("hint13b").innerHTML = arabic[13];
+	document.getElementById("hint14").innerHTML = sent[14];
+	//document.getElementById("hint14a").innerHTML = Hint[43];
+	document.getElementById("hint14b").innerHTML = arabic[14];
+	document.getElementById("hint15").innerHTML = sent[15];
+	//document.getElementById("hint15a").innerHTML = Hint[46];
+	document.getElementById("hint15b").innerHTML = arabic[15];
+	document.getElementById("hint16").innerHTML = sent[16];
+	//document.getElementById("hint16a").innerHTML = Hint[49];
+	document.getElementById("hint16b").innerHTML = arabic[16];
+	document.getElementById("hint17").innerHTML = sent[17];
+	//document.getElementById("hint17a").innerHTML = Hint[52];
+	document.getElementById("hint17b").innerHTML = arabic[17];
+	document.getElementById("hint18").innerHTML = sent[18];
+	//document.getElementById("hint18a").innerHTML = Hint[55];
+	document.getElementById("hint18b").innerHTML = arabic[18];
+	document.getElementById("hint19").innerHTML = sent[19];
+	//document.getElementById("hint19a").innerHTML = Hint[58];
+	document.getElementById("hint19b").innerHTML = arabic[19];
+	/*
+	document.getElementById("hint20").innerHTML = sent[20];
+	//document.getElementById("hint20a").innerHTML = Hint[61];
+	document.getElementById("hint20b").innerHTML = arabic[20];
+	document.getElementById("hint21").innerHTML = sent[21];
+	//document.getElementById("hint21a").innerHTML = Hint[61];
+	document.getElementById("hint21b").innerHTML = arabic[21];
+	document.getElementById("hint22").innerHTML = sent[22];
+	//document.getElementById("hint22a").innerHTML = Hint[61];
+	document.getElementById("hint22b").innerHTML = arabic[22];
+	document.getElementById("hint23").innerHTML = sent[23];
+	//document.getElementById("hint21a").innerHTML = Hint[61];
+	document.getElementById("hint23b").innerHTML = arabic[23];
+	document.getElementById("hint24").innerHTML = sent[24];
+	//document.getElementById("hint24a").innerHTML = Hint[61];
+	document.getElementById("hint24b").innerHTML = arabic[24];
+	document.getElementById("hint25").innerHTML = sent[25];
+	//document.getElementById("hint25a").innerHTML = Hint[61];
+	document.getElementById("hint25b").innerHTML = arabic[25];
+	*/
+	}
+
+
+function G1input1()
+
+	{
+	var str1 = document.getElementById("game1input").value;
+	var cap1 = str1.charAt(0);
+	
+	if(cap1.match(/^[A-Z]/)) {
+	document.getElementById("G1prompt").innerHTML = "You use uppercase letters only for names of people and places.";
+	}
+	
+	else if (str1==newWord[0]){
+	document.getElementById("G1prompt").innerHTML = "Well-done";
+	document.getElementById("lex0b").innerHTML = newWord[0];
+	document.getElementById("def0b").innerHTML = def[0];	
+	}
+	
+	else if (str1==newWord[1]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex1b").innerHTML = newWord[1];	
+	document.getElementById("def1b").innerHTML = def[1];	
+	}
+	
+	else if (str1==newWord[2]){
+	document.getElementById("G1prompt").innerHTML = "Great!";
+	document.getElementById("lex2b").innerHTML = newWord[2];
+	document.getElementById("def2b").innerHTML = def[2];		
+	}
+	
+	else if (str1==newWord[3]){
+	document.getElementById("G1prompt").innerHTML = "You're doing very well!";
+	document.getElementById("lex3b").innerHTML = newWord[3];
+	document.getElementById("def3b").innerHTML = def[3];		
+	}
+	
+	else if (str1==newWord[4]){
+	document.getElementById("G1prompt").innerHTML = "Nice!";
+	document.getElementById("lex4b").innerHTML = newWord[4];
+	document.getElementById("def4b").innerHTML = def[4];		
+	}
+	
+	else if (str1==newWord[5]){
+	document.getElementById("G1prompt").innerHTML = "Incredible!";
+	document.getElementById("lex5b").innerHTML = newWord[5];	
+	document.getElementById("def5b").innerHTML = def[5];		
+	}
+	
+	else if (str1==newWord[6]){
+	document.getElementById("G1prompt").innerHTML = "Great Work!";
+	document.getElementById("lex6b").innerHTML = newWord[6];
+	document.getElementById("def6b").innerHTML = def[6];		
+	}
+	
+	else if (str1==newWord[7]){
+	document.getElementById("G1prompt").innerHTML = "Impressive!";
+	document.getElementById("lex7b").innerHTML = newWord[7];	
+	document.getElementById("def7b").innerHTML = def[7];	
+	}
+	
+	else if (str1==newWord[8]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex8b").innerHTML = newWord[8];	
+	document.getElementById("def8b").innerHTML = def8[8];	
+	}
+	
+	else if (str1==newWord[9]){
+	document.getElementById("G1prompt").innerHTML = "Wonderful!";
+	document.getElementById("lex9b").innerHTML = newWord[9];	
+	document.getElementById("def9b").innerHTML = def[9];	
+	}
+	
+	else if (str1==newWord[10]){
+	document.getElementById("G1prompt").innerHTML = "Amazing!";
+	document.getElementById("lex10b").innerHTML = newWord[10];	
+	document.getElementById("def10b").innerHTML = def[10];	
+	}
+	
+	else if (str1==newWord[11]){
+	document.getElementById("G1prompt").innerHTML = "Super!";
+	document.getElementById("lex11b").innerHTML = newWord[11];	
+	document.getElementById("def11b").innerHTML = def[11];	
+	}
+	
+	else if (str1==newWord[12]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex12b").innerHTML = newWord[12];	
+	document.getElementById("def12b").innerHTML = def[12];	
+	}
+	
+	else if (str1==newWord[13]){
+	document.getElementById("G1prompt").innerHTML = "That's Great!";
+	document.getElementById("lex13b").innerHTML = newWord[13];	
+	document.getElementById("def13b").innerHTML = def[13];	
+	}
+	
+	else if (str1==newWord[14]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex14b").innerHTML = newWord[14];	
+	document.getElementById("def14b").innerHTML = def[14];	
+	}
+	
+	else if (str1==newWord[15]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex15b").innerHTML = newWord[15];	
+	document.getElementById("def15b").innerHTML = def[15];	
+	}
+	
+	else if (str1==newWord[16]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex16b").innerHTML = newWord[16];	
+	document.getElementById("def16b").innerHTML = def[16];	
+	}
+	
+	else if (str1==newWord[17]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex17b").innerHTML = newWord[17];	
+	document.getElementById("def17b").innerHTML = def[17];	
+	}
+	
+	else if (str1==newWord[18]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex18b").innerHTML = newWord[18];	
+	document.getElementById("def18b").innerHTML = def[18];	
+	}
+	
+	else if (str1==newWord[19]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex19b").innerHTML = newWord[19];	
+	document.getElementById("def19b").innerHTML = def[19];	
+	}
+	
+	else if (str1==newWord[20]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex20b").innerHTML = newWord[20];	
+	document.getElementById("def20b").innerHTML = def[20];	
+	}
+	
+	else if (str1==newWord[21]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex21b").innerHTML = newWord[21];	
+	document.getElementById("def21b").innerHTML = def[21];	
+	}
+	
+	else if (str1==newWord[22]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex22b").innerHTML = newWord[22];	
+	document.getElementById("def22b").innerHTML = def[22];	
+	}
+	
+	else if (str1==newWord[23]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex23b").innerHTML = newWord[23];	
+	document.getElementById("def23b").innerHTML = def[23];	
+	}
+	
+	else if (str1==newWord[24]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex24b").innerHTML = newWord[24];	
+	document.getElementById("def24b").innerHTML = def[24];	
+	}
+	
+	else if (str1==newWord[25]){
+	document.getElementById("G1prompt").innerHTML = "Fantastic!";
+	document.getElementById("lex25b").innerHTML = newWord[25];	
+	document.getElementById("def25b").innerHTML = def[25];	
+	}
+	
+	else if (str1==""){
+	document.getElementById("G1prompt").innerHTML = "You haven't entered a word.";	
+	}
+	
+	}
+
+function G1reset()//resets the word and hint lists in Game 1.
+	{
+	
+	document.getElementById("lex0b").innerHTML = "&nbsp;";	
+	document.getElementById("lex1b").innerHTML = "&nbsp;";
+	document.getElementById("lex2b").innerHTML = "&nbsp;";
+	document.getElementById("lex3b").innerHTML = "&nbsp;";
+	document.getElementById("lex4b").innerHTML = "&nbsp;";
+	document.getElementById("lex5b").innerHTML = "&nbsp;";
+	document.getElementById("lex6b").innerHTML = "&nbsp;";
+	document.getElementById("lex7b").innerHTML = "&nbsp;";
+	document.getElementById("lex8b").innerHTML = "&nbsp;";
+	document.getElementById("lex9b").innerHTML = "&nbsp;";
+	document.getElementById("lex10b").innerHTML = "&nbsp;";	
+	document.getElementById("lex11b").innerHTML = "&nbsp;";
+	document.getElementById("lex12b").innerHTML = "&nbsp;";
+	document.getElementById("lex13b").innerHTML = "&nbsp;";
+	document.getElementById("lex14b").innerHTML = "&nbsp;";
+	document.getElementById("lex15b").innerHTML = "&nbsp;";
+	document.getElementById("lex16b").innerHTML = "&nbsp;";
+	document.getElementById("lex17b").innerHTML = "&nbsp;";
+	document.getElementById("lex18b").innerHTML = "&nbsp;";
+	document.getElementById("lex19b").innerHTML = "&nbsp;";
+	document.getElementById("lex20b").innerHTML = "&nbsp;";
+	
+	document.getElementById("hint0c").innerHTML = "&nbsp;";	
+	document.getElementById("hint1c").innerHTML = "&nbsp;";
+	document.getElementById("hint2c").innerHTML = "&nbsp;";
+	document.getElementById("hint3c").innerHTML = "&nbsp;";
+	document.getElementById("hint4c").innerHTML = "&nbsp;";
+	document.getElementById("hint5c").innerHTML = "&nbsp;";
+	document.getElementById("hint6c").innerHTML = "&nbsp;";
+	document.getElementById("hint7c").innerHTML = "&nbsp;";
+	document.getElementById("hint8c").innerHTML = "&nbsp;";
+	document.getElementById("hint9c").innerHTML = "&nbsp;";
+	document.getElementById("hint10c").innerHTML = "&nbsp;";	
+	document.getElementById("hint11c").innerHTML = "&nbsp;";
+	document.getElementById("hint12c").innerHTML = "&nbsp;";
+	document.getElementById("hint13c").innerHTML = "&nbsp;";
+	document.getElementById("hint14c").innerHTML = "&nbsp;";
+	document.getElementById("hint15c").innerHTML = "&nbsp;";
+	document.getElementById("hint16c").innerHTML = "&nbsp;";
+	document.getElementById("hint17c").innerHTML = "&nbsp;";
+	document.getElementById("hint18c").innerHTML = "&nbsp;";
+	document.getElementById("hint19c").innerHTML = "&nbsp;";
+	document.getElementById("hint20c").innerHTML = "&nbsp;";
+	
+	}
+
+
+function randomStart()//this generates 5 random words for the student in Game One
+
+	{
+		
+for (var i=0; i<5; i++)	{
+	var randomNum = Math.floor((Math.random() * newWord.length));
+	var a = "lex" + randomNum + "b";
+	document.getElementById(a).innerHTML = newWord[randomNum];
+	}
+	
+	}
+
+
+function randomStart2()//This generates 5 random hints in Game 1.
+	{
+
+for (var j=0; j<5; j++)    {
+	var randomNum2 = Math.floor((Math.random() * newWord.length));
+	var Numb = (randomNum2*3) + 1;
+	var b = "hint" + Numb + "c";
+	document.getElementById(b).innerHTML = Hint[Numb];
+	
+	}
+
+	}
+
+function scramble()
+	//Word Game 3; This function generates and scrambles a new word.
+	{
+	randomNumber = Math.floor((Math.random() * newWord.length));
+	g3unscrambled = newWord[randomNumber];
+	word = newWord[randomNumber];
+	var wordLength = word.length;
+	var scramble = "";
+	g3counter = 0;
+
+for (var i = 0; i < wordLength; i++) {
+    var charIndex = Math.floor(Math.random() * word.length);
+    scramble += word.charAt(charIndex);
+    word = word.substr(0, charIndex) + word.substr(charIndex + 1);
+	g3word = randomNumber;
+
+	document.getElementById("scrambled").innerHTML = scramble;
+	document.getElementById("scrambled").style.color = "black";
+	document.getElementById("G3H1").innerHTML = "";
+	document.getElementById("G3H2").innerHTML = "";
+	document.getElementById("G3H3").innerHTML = "";
+	document.getElementById("G3H4").innerHTML = "";
+	g3input = "";
+	
+	}
+	}
+
+function G3hint1()
+	{
+	
+	document.getElementById("G3H1").innerHTML = sent[g3word];
+	document.getElementById("G3H1").style.textAlign = "center";
+	document.getElementById("G3H1").style.color = "white";
+	g3counter++;
+	
+	}
+
+function G3hint2()
+	{
+	
+	document.getElementById("G3H2").innerHTML = def[g3word];
+	document.getElementById("G3H2").style.color = "white";
+	g3counter++;
+	
+	}
+
+function G3hint3()
+	{
+	
+	document.getElementById("G3H3").innerHTML = arabic[g3word];
+	document.getElementById("G3H3").style.color = "white";
+	g3counter++;
+	
+	}
+
+function G3hint4()//Word Scramble Hint #4
+	{
+	var str = newWord[randomNumber];
+	var first = str.charAt(0);
+	var last = str.charAt(str.length-1);
+	var n = str.length - 3;
+	var filler = " _ ";
+	
+for (var i = 0; i < n ; i++) {
+	
+	filler = filler + " _ ";
+	document.getElementById("G3H4").innerHTML = first + filler + last;
+	document.getElementById("G3H4").style.color = "white";
+    }
+	g3counter++;
+	}
+
+
+function G3scoring()
+
+	{
+	
+	var a = document.getElementById("game3input").value;
+	var b = document.getElementById("G3score").value = g3score;
+	var c = parseInt(b) ||0;
+	
+if (a == newWord[randomNumber] && g3counter ==0) {
+	var d = document.getElementById("G3score").innerHTML = c + 10;
+	g3score = d;
+	g3counter = 5;
+	document.getElementById("scrambled").innerHTML = g3unscrambled;
+	document.getElementById("scrambled").style.color = "green";
+	document.getElementById("game3input").value = "";
+	
+}
+
+else if (a == newWord[randomNumber] && g3counter ==1) {
+	var e = document.getElementById("G3score").innerHTML = c + 7;
+	g3score = e;
+	g3counter = 5;
+	document.getElementById("scrambled").innerHTML = g3unscrambled;
+	document.getElementById("scrambled").style.color = "green";
+	document.getElementById("game3input").value = "";
+}
+
+else if (a == newWord[randomNumber] && g3counter ==2) {
+	var f = document.getElementById("G3score").innerHTML = c + 5;
+	g3score = f;
+	g3counter = 5;
+	document.getElementById("scrambled").innerHTML = g3unscrambled;
+	document.getElementById("scrambled").style.color = "green";
+	document.getElementById("game3input").value = "";
+}
+
+else if (a == newWord[randomNumber] && g3counter ==3) {
+	var g = document.getElementById("G3score").innerHTML = c + 3;
+	g3score = g;
+	g3counter = 5;
+	document.getElementById("scrambled").innerHTML = g3unscrambled;
+	document.getElementById("scrambled").style.color = "green";
+	document.getElementById("game3input").value = "";
+}
+
+else if (a == newWord[randomNumber] && g3counter ==4) {
+	var h = document.getElementById("G3score").innerHTML = c + 1;
+	g3score = h;
+	g3counter = 5;
+	document.getElementById("scrambled").innerHTML = g3unscrambled;
+	document.getElementById("scrambled").style.color = "green";
+	document.getElementById("game3input").value = "";
+}
+	}
+	
+
+function vowelless()
+	{
+
+	vowelword = Math.floor((Math.random() * newWord.length));
+	var w = newWord[vowelword];
+	w = w.replace(/a/g," _ ");
+	w = w.replace(/e/g," _ ");
+	w = w.replace(/i/g," _ ");
+	w = w.replace(/o/g," _ ");
+	w = w.replace(/u/g," _ ");
+	w = w.replace(/y/g," _ ");
+	document.getElementById("novowels").innerHTML = w;
+	g4counter=0;
+	
+	}
+	
+
+function vowelhelp()
+	{
+	
+	var a = newWord[vowelword];
+	document.getElementById("vowelled").innerHTML = a;
+	
+	$('#vowelled').each(function () {
+    $(this).html($(this).html().replace(/(a|e|i|o|u|y)/g, '<span class="vowel">$1</span>'));	
+});
+	$('#vowelled').show();
+	$('#vowelled').hide(1500);
+	g4counter++;
+
+	}
+
+function G4scoring()
+	
+	{
+
+var a = document.getElementById("game4input").value;
+
+if (a == newWord[vowelword] && g4counter == 0) {
+	
+	document.getElementById("G4score").innerHTML = g4score + 10;
+	g4score = g4score + 10;
+	g4counter = 100;
+		if (g4score > g4highscore) {
+		
+			g4highscore = g4score;
+			document.getElementById("hiscoreg4").innerHTML = g4highscore;
+			
+		}
+	
+}
+
+else if (a == newWord[vowelword] && g4counter == 1) {
+	
+	document.getElementById("G4score").innerHTML = g4score + 5;
+	g4score = g4score + 5;
+	g4counter = 100;
+		if (g4score > g4highscore) {
+		
+			g4highscore = g4score;
+			document.getElementById("hiscoreg4").innerHTML = g4highscore;
+			
+		}	
+	
+}
+
+else if (a == newWord[vowelword] && g4counter == 2) {
+	
+	document.getElementById("G4score").innerHTML = g4score + 3;
+	g4score = g4score + 3;
+	g4counter = 100;
+		if (g4score > g4highscore) {
+		
+			g4highscore = g4score;
+			document.getElementById("hiscoreg4").innerHTML = g4highscore;
+			
+		}	
+	
+}
+
+else if (a == newWord[vowelword] && g4counter == 3) {
+	
+	document.getElementById("G4score").innerHTML = g4score + 1;
+	g4score = g4score + 1;
+	g4counter = 100;
+		if (g4score > g4highscore) {
+		
+			g4highscore = g4score;
+			document.getElementById("hiscoreg4").innerHTML = g4highscore;
+			
+		}	
+	
+}
+
+	}
+
+
+function randPic()
+	{
+
+	picnumb = Math.floor((Math.random() * newWord.length));
+	
+	document.getElementById("g5pic").innerHTML = '<img src ="'+ picnumb +'.jpg" alt="picchange" height="175" align="middle">';
+	document.getElementById("imagematch1").src = picnumb + '.jpg';
+	document.getElementById("imagematch2").src = picnumb + '.jpg';
+	g5fair = 0;
+	
+	g5score = 0;
+	
+	document.getElementById("g5score").innerHTML = g5score;
+	
+	$("#g5lex0").removeClass('ui-disabled');
+	$("#g5lex1").removeClass('ui-disabled');
+	$("#g5lex2").removeClass('ui-disabled');
+	$("#g5lex3").removeClass('ui-disabled');
+	$("#g5lex4").removeClass('ui-disabled');
+	$("#g5lex5").removeClass('ui-disabled');
+	$("#g5lex6").removeClass('ui-disabled');
+	$("#g5lex7").removeClass('ui-disabled');
+	$("#g5lex8").removeClass('ui-disabled');
+	$("#g5lex9").removeClass('ui-disabled');
+	$("#g5lex10").removeClass('ui-disabled');
+	$("#g5lex11").removeClass('ui-disabled');
+	$("#g5lex12").removeClass('ui-disabled');
+	$("#g5lex13").removeClass('ui-disabled');
+	$("#g5lex14").removeClass('ui-disabled');
+	$("#g5lex15").removeClass('ui-disabled');
+	$("#g5lex16").removeClass('ui-disabled');
+	$("#g5lex17").removeClass('ui-disabled');
+	$("#g5lex18").removeClass('ui-disabled');
+	$("#g5lex19").removeClass('ui-disabled');
+	$("#g5lex20").removeClass('ui-disabled');
+	$("#g5lex21").removeClass('ui-disabled');
+	$("#g5lex22").removeClass('ui-disabled');
+	$("#g5lex23").removeClass('ui-disabled');
+	$("#g5lex24").removeClass('ui-disabled');
+	$("#g5lex25").removeClass('ui-disabled');
+	
+
+	}
+	
+function randPic2()
+	{
+
+	picnumb = Math.floor((Math.random() * newWord.length));
+	
+	//document.getElementById("g5pic").innerHTML = '<img src ="'+ picnumb +'.jpg" alt="picchange" height="175" align="middle">';
+	document.getElementById("imagematch1").src = picnumb + '.jpg';
+	document.getElementById("imagematch2").src = picnumb + '.jpg';
+	g5fair = 0;
+	
+	$(".match").css("background", "#0069AA");
+	
+	$(".match").removeClass('ui-disabled');
+	
+	$(".match").buttonMarkup({ icon: "" });
+
+	}
+	
+function g5lex0()
+	{
+
+	var a = 0;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex0").css("background", "#008A5E");
+		$("#g5lex0").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+			
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex0").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex1()
+	{
+
+	var a = 1;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex1").css("background", "#008A5E");
+		$("#g5lex1").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex1").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex2()
+	{
+
+	var a = 2;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex2").css("background", "#008A5E");
+		$("#g5lex2").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex2").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex3()
+	{
+
+	var a = 3;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex3").css("background", "#008A5E");
+		$("#g5lex3").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex3").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex4()
+	{
+
+	var a = 4;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex4").css("background", "#008A5E");
+		$("#g5lex4").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex4").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex5()
+	{
+
+	var a = 5;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex5").css("background", "#008A5E");
+		$("#g5lex5").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex5").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex6()
+	{
+
+	var a = 6;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex6").css("background", "#008A5E");
+		$("#g5lex6").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex6").addClass('ui-disabled');
+		}
+
+	}
+	
+function g5lex7()
+	{
+
+	var a = 7;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex7").css("background", "#008A5E");
+		$("#g5lex7").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex7").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex8()
+	{
+
+	var a = 8;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex8").css("background", "#008A5E");
+		$("#g5lex8").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex8").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex9()
+	{
+
+	var a = 9;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex9").css("background", "#008A5E");
+		$("#g5lex9").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex9").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex10()
+	{
+
+	var a = 10;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex10").css("background", "#008A5E");
+		$("#g5lex10").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex10").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex11()
+	{
+
+	var a = 11;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex11").css("background", "#008A5E");
+		$("#g5lex11").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex11").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex12()
+	{
+
+	var a = 12;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex12").css("background", "#008A5E");
+		$("#g5lex12").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex12").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex13()
+	{
+
+	var a = 13;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex13").css("background", "#008A5E");
+		$("#g5lex13").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex13").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex14()
+	{
+
+	var a = 14;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex14").css("background", "#008A5E");
+		$("#g5lex14").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex14").addClass('ui-disabled');
+	
+		}
+
+	}
+
+function g5lex15()
+	{
+
+	var a = 15;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex15").css("background", "#008A5E");
+		$("#g5lex15").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex15").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex16()
+	{
+
+	var a = 16;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex16").css("background", "#008A5E");
+		$("#g5lex16").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex16").addClass('ui-disabled');
+		}
+
+	}
+	
+function g5lex17()
+	{
+
+	var a = 17;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex17").css("background", "#008A5E");
+		$("#g5lex17").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex17").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex18()
+	{
+
+	var a = 18;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex18").css("background", "#008A5E");
+		$("#g5lex18").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex18").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex19()
+	{
+
+	var a = 19;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex19").css("background", "#008A5E");
+		$("#g5lex19").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex19").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex20()
+	{
+
+	var a = 20;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex20").css("background", "#008A5E");
+		$("#g5lex20").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex20").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex21()
+	{
+
+	var a = 21;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex21").css("background", "#008A5E");
+		$("#g5lex21").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex21").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex22()
+	{
+
+	var a = 22;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex22").css("background", "#008A5E");
+		$("#g5lex22").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex22").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex23()
+	{
+
+	var a = 23;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex23").css("background", "#008A5E");
+		$("#g5lex23").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex23").addClass('ui-disabled');
+		}
+
+	}
+	
+function g5lex24()
+	{
+
+	var a = 24;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex24").css("background", "#008A5E");
+		$("#g5lex24").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex24").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g5lex25()
+	{
+
+	var a = 25;
+	
+	if (a == picnumb && g5fair == 0) {
+	
+		document.getElementById("g5score").innerHTML = g5score + 5;
+		g5score = g5score + 5;
+		g5fair++;
+		$("#g5lex25").css("background", "#008A5E");
+		$("#g5lex25").buttonMarkup({ icon: "check" });
+		
+			if (g5score > g5highscore) {
+			
+				g5highscore = g5score;
+				document.getElementById("highscoreg5").innerHTML = g5highscore;
+			}
+	
+	}
+	
+	else if (a == picnumb && g5fair == 1) {
+	
+		g5score = g5score;
+		
+		}
+	
+	
+	else {
+	
+		document.getElementById("g5score").innerHTML = g5score - 1;
+		g5score = g5score - 1;
+		$("#g5lex25").addClass('ui-disabled');
+	
+		}
+
+	}
+	
+function g2startstop()
+
+	{
+	
+	g2word = Math.floor((Math.random() * newWord.length));
+	document.getElementById("g2word").innerHTML = newWord[g2word];
+
+	
+	
+	}
+
+function g2hint1()
+	{
+	
+	document.getElementById("g2hint1").innerHTML = def[g2word];
+	
+	}
+
+function g2hint2()
+	{
+	
+	document.getElementById("g2hint2").innerHTML = sent[g2word];
+	
+	}
+
+function g2hint3()
+	{
+	var str = newWord[g2word];
+	var first = str.charAt(0);
+	document.getElementById("g2hint3").innerHTML = "It starts with the letter '" + first + "'.";
+	
+	}
+
+function g2name()
+
+	{
+	
+	g2name = document.getElementById("g2input").value;
+	
+	document.getElementById("g2playername").innerHTML = g2name;
+	
+	}
+
+function g2correct()
+
+	{
+	
+	g2word = Math.floor((Math.random() * newWord.length));
+	document.getElementById("g2word").innerHTML = newWord[g2word];
+	document.getElementById("g2hint1").innerHTML = "Hint 1";
+	document.getElementById("g2hint2").innerHTML = "Hint 2";
+	document.getElementById("g2hint3").innerHTML = "Hint 3";
+	
+	document.getElementById("g2score").innerHTML = g2score + 1;
+	g2score++;
+
+	
+	}
+
+function g2pass()
+
+	{
+	
+	
+	g2word = Math.floor((Math.random() * newWord.length));
+	document.getElementById("g2word").innerHTML = newWord[g2word];
+	document.getElementById("g2hint1").innerHTML = "Hint 1";
+	document.getElementById("g2hint2").innerHTML = "Hint 2";
+	document.getElementById("g2hint3").innerHTML = "Hint 3";
+	
+	}
+
+function g2pic0()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="0.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic1()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="1.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+
+function g2pic2()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="2.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic3()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="3.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic4()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="4.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic5()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="5.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic6()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="6.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic7()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="7.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic8()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="8.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic9()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="9.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic10()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="10.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic11()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="11.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic12()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="12.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic13()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="13.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic14()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="14.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic15()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="15.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic16()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="16.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic17()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="17.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic18()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="18.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic19()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="19.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic20()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="20.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic21()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="21.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic22()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="22.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic23()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="23.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic24()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="24.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+	
+function g2pic25()
+
+	{
+
+	document.getElementById("g2pic").innerHTML = '<img src ="25.jpg" alt="picchange" height="150" align="middle">';
+	
+	}
+
+$(document).ready(function(){
+	$('#img0').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img1').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img2').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img3').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img4').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img5').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img6').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img7').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img8').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img9').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img10').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img11').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img12').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img13').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img14').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).ready(function(){
+	$('#img15').toggle(function()
+		{$(this).animate({width: "300px"}, 'slow');},
+		function()
+		{$(this).animate({width: "200px"}, 'slow');
+		});
+});
+
+$(document).on( "pageinit", function() {
+    $( ".photopop" ).on({
+        popupbeforeposition: function() {
+            var maxHeight = $( window ).height() - 60 + "px";
+            $( ".photopop" ).css( "max-height", maxHeight );
+        }
+    });
+});
+
+</script>
+
+</head> 
+<body bgcolor="#FFFFFF" onload="please()"> 
+
+<div data-role="page" id="page">
+	<div data-role="header" data-theme="a">
+		<h1 align="center"></h1>
+	</div>
+	<div data-role="content" data-theme="d">
+
+      <div align="center">
+        <blockquote>
+        <br/>
+        <br/>
+        <div align="center"><img src="LSAC.png.png" width="300" height="129" alt="LSAlogo">
+          
+      </div>
+    
+        <span class="course">TPP-GL-1071</span><br/>
+        <span class="course">Unit 3</span><br/>
+        <br/>
+        </blockquote>
+      </div>
+      <br/>
+       
+      <div data-role="controlgroup">
+      	<a href="#page2" data-role="button" data-theme="a">Review Vocabulary</a>
+        <a href="#page50" data-role="button" data-theme="a" >Play Word Games</a>
+        <a href="#page0a" data-role="button" data-rel="dialog" data-theme="a">Share this App!</a>
+
+      </div>
+ 	</div>
+	<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a">
+		<span class="appinfor"><span class="appinfo">COLLEGE OF THE NORTH ATLANTIC - QATAR v.1.0</span></span>
+	</div>
+</div>
+
+<div id="page0a" data-overlay-theme="b" data-role="page">
+<div data-role="header" data-theme="a">
+   <br/>
+   <br/>
+   <br/>
+  <span>Scan this to download your own app!</span>
+   <br/>
+   <br/>
+   <br/>
+  <img src="chart.png" width="232" height="232" alt="qrcode">
+  <br/>
+   <br/>
+   <br/>
+   <br/>
+</div>
+</div>
+
+<div id="page2" data-role="page" data-theme="a">
+	<div data-role="header" data-theme="a">
+		<h1>Words to Know</h1>
+	</div>
+	<div data-role="content">	
+		<ul data-filter="true" data-filter-placeholder="filter words" data-role="listview" data-theme="a">
+			<li><a href="#page3" id="lex0"></a> </li>
+            <li><a href="#page4" id="lex1"></a></li>
+            <li><a href="#page5" id="lex2"></a></li>
+            <li><a href="#page6" id="lex3"></a></li>
+            <li><a href="#page7" id="lex4"></a></li>
+            <li><a href="#page8" id="lex5"></a></li>
+            <li><a href="#page9" id="lex6"></a></li>
+            <li><a href="#page10" id="lex7"></a></li>
+            <li><a href="#page11" id="lex8"></a></li>
+            <li><a href="#page12" id="lex9"></a></li>
+            <li><a href="#page13" id="lex10"></a></li>
+            <li><a href="#page14" id="lex11"></a></li>
+            <li><a href="#page15" id="lex12"></a></li>
+            <li><a href="#page16" id="lex13"></a></li>
+            <li><a href="#page17" id="lex14"></a></li>
+            <li><a href="#page18" id="lex15"></a></li>
+            <li><a href="#page19" id="lex16"></a></li>
+            <li><a href="#page20" id="lex17"></a></li>
+            <li><a href="#page21" id="lex18"></a></li>
+            <li><a href="#page22" id="lex19"></a></li>
+            <!--
+            <li><a href="#page23" id="lex20"></a></li>
+            <li><a href="#page24" id="lex21"></a></li>
+            <li><a href="#page25" id="lex22"></a></li>
+            <li><a href="#page26" id="lex23"></a></li>
+            <li><a href="#page27" id="lex24"></a></li>
+            <li><a href="#page28" id="lex25"></a></li>   
+            -->   
+		</ul>	
+	</div>
+	<div data-role="footer">
+		<a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+	</div>
+</div>
+
+<div class="pages" id="page3" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  	<br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex0a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page3a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+     
+      <a href="#img0pop" data-rel="popup"><img src="0.jpg" alt="pic1" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img0pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="0.jpg" alt="pic1"/>
+      </div>
+      
+      <br/>
+      <br/>
+      <span id="hint0"></span>
+      <br/>
+      <br/>
+      <span id="hint0a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint0b" style="font-size: xx-large"></span></span></div>
+    </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div>
+        	  <div><a href="#page2" data-icon="arrow-l" data-iconpos"left" data-inline="true" data-role="button">Back</a></div>
+   	      </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div>
+        	  <div>
+        	    <div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a></div>
+        	  </div>
+   	      </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div>
+        	  <div><a href="#page4" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a></div>
+   	      </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div class="dialogs" data-role="page" id="page3a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 class="dialogheader" id="lex0z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos0" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def0" style="text-align: left; font-style: italic;"></p>
+    
+    <span><b>other information:</b></span>
+    <p id="xtra0" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+   <h4><a href="#page2"></a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page4" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex1a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page4a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+    	
+      <a href="#img1pop" data-rel="popup"><img src="1.jpg" alt="pic1" class="pic"/></a>
+      		<div data-role="popup" class="photopop" id="img1pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="1.jpg" alt="pic1"/>
+      </div>
+      
+      <br/>
+      <br/>
+	  <span id="hint1"></span>
+      <br/>
+      <br/>
+      <span id="hint1a"></span>
+	  <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint1b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page3" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page5" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page4a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 class="dialogheader" id="lex1z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos1" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def1" style="text-align: left; font-style: italic;"></p>
+    <span><b>other information:</b></span>
+    <p id="xtra1" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+  	<span id="extra0"></span>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page5" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex2a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page5a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+    	  <a href="#img2pop" data-rel="popup"><img src="2.jpg" alt="pic2" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img2pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="2.jpg" alt="pic1"/>
+      </div>
+      
+      <br/>
+      <br/>
+      <span id="hint2"></span>
+      <br/>
+      <br/>
+      <span id="hint2a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint2b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page4" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page6" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page5a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex2z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos2" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def2" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra2" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page6" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex3a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page6a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+      <a href="#img3pop" data-rel="popup"><img src="3.jpg" alt="pic1" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img3pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="3.jpg" alt="pic1"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint3"></span>
+      <br/>
+      <br/>
+      <span id="hint3a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint3b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page5" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page7" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page6a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex3z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos3" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def3" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra3" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page7" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex4a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page7a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+     <a href="#img4pop" data-rel="popup"><img src="4.jpg" alt="pic1" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img4pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="4.jpg" alt="pic1"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint4"></span>
+      <br/>
+      <br/>
+      <span id="hint4a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint4b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page6" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page8" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page7a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex4z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos4" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def4" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra4" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page8" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex5a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page8a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+    
+ 	  <a href="#img5pop" data-rel="popup"><img src="5.jpg" alt="pic1" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img5pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="5.jpg" alt="pic1"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint5"></span>
+      <br/>
+      <br/>
+      <span id="hint5a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint5b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page7" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page9" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page8a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex5z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos5" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def5" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra5" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page9" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex6a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page9a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+    
+ 	  <a href="#img6pop" data-rel="popup"><img src="6.jpg" alt="pic6" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img6pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="6.jpg" alt="pic1"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint6"></span>
+      <br/>
+      <br/>
+      <span id="hint6a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint6b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page8" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page10" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page9a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex6z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos6" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def6" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra6" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page10" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex7a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page10a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+    
+	 <a href="#img7pop" data-rel="popup"><img src="7.jpg" alt="pic1" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img7pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="7.jpg" alt="pic1"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint7"></span>
+      <br/>
+      <br/>
+      <span id="hint7a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint7b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page9" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page11" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page10a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex7z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos7" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def7" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra7" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page11" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex8a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page11a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+    	
+ 	  <a href="#img8pop" data-rel="popup"><img src="8.jpg" alt="pic1" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img8pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="8.jpg" alt="pic1"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint8"></span>
+      <br/>
+      <br/>
+      <span id="hint8a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint8b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page10" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page12" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page11a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex8z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos8" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def8" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra8" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page12" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex9a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page12a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+    	
+  	  <a href="#img9pop" data-rel="popup"><img src="9.jpg" alt="pic1" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img9pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="9.jpg" alt="pic1"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint9"></span>
+      <br/>
+      <br/>
+      <span id="hint9a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint9b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page11" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page13" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page12a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex9z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos9" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def9" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra9" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page13" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex10a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page13a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+    
+ <a href="#img10pop" data-rel="popup"><img src="10.jpg" alt="pic10" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img10pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="10.jpg" alt="pic1"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint10"></span>
+      <br/>
+      <br/>
+      <span id="hint10a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint10b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page12" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page14" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page13a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex10z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos10" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def10" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra10" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page14" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex11a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page14a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+    
+ <a href="#img11pop" data-rel="popup"><img src="11.jpg" alt="pic11" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img11pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="11.jpg" alt="pic11"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint11"></span>
+      <br/>
+      <br/>
+      <span id="hint11a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint11b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page13" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page15" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page14a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex11z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos11" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def11" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra11" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page15" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex12a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page15a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+    
+ 	  <a href="#img12pop" data-rel="popup"><img src="12.jpg" alt="pic12" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img12pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="12.jpg" alt="pic1"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint12"></span>
+      <br/>
+      <br/>
+      <span id="hint12a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint12b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page14" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page16" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page15a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex12z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos12" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def12" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra12" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page16" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex13a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page16a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+    
+	 <a href="#img13pop" data-rel="popup"><img src="13.jpg" alt="pic13" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img13pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="13.jpg" alt="pic1"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint13"></span>
+      <br/>
+      <br/>
+      <span id="hint13a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint13b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page15" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page17" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page16a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex13z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos13" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def13" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra13" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page17" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex14a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page17a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+    
+ 	<a href="#img14pop" data-rel="popup"><img src="14.jpg" alt="pic14" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img14pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="14.jpg" alt="pic1"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint14"></span>
+      <br/>
+      <br/>
+      <span id="hint14a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint14b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page16" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page18" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page17a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex14z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos14" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def14" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra14" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page18" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-1071 Unit 3</h1>
+  </div>
+  <br/>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex15a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page18a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+    
+ 	<a href="#img15pop" data-rel="popup"><img src="15.jpg" alt="pic15" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img15pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="15.jpg" alt="pic15"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint15"></span>
+      <br/>
+      <br/>
+      <span id="hint15a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint15b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page17" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+          <div align="center"><a href="#page19" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page18a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex15z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos15" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def15" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra15" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page19" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-GL-103 Teaching Pack 1</h1>
+  </div>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex16a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page19a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+      <a href="#img16pop" data-rel="popup"><img src="16.jpg" alt="pic12" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img16pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="16.jpg" alt="pic16"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint16"></span>
+      <br/>
+      <br/>
+      <span id="hint16a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint16b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page18" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page20" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page19a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex16z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos16" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def16" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra16" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page20" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-GL-103 Teaching Pack 1</h1>
+  </div>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex17a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page20a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+      <a href="#img17pop" data-rel="popup"><img src="17.jpg" alt="pic17" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img17pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="17.jpg" alt="pic17"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint17"></span>
+      <br/>
+      <br/>
+      <span id="hint17a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint17b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page19" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page21" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page20a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex17z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos17" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def17" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra17" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page21" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-GL-103 Teaching Pack 1</h1>
+  </div>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex18a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page21a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+      <a href="#img18pop" data-rel="popup"><img src="18.jpg" alt="pic12" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img18pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="18.jpg" alt="pic18"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint18"></span>
+      <br/>
+      <br/>
+      <span id="hint18a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint18b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page20" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page22" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page21a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex18z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos18" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def18" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra18" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+<div class="pages" id="page22" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-GL-103 Teaching Pack 1</h1>
+  </div>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex19a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page22a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+      <a href="#img19pop" data-rel="popup"><img src="19.jpg" alt="pic19" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img19pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="19.jpg" alt="pic19"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint19"></span>
+      <br/>
+      <br/>
+      <span id="hint19a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint19b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page21" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page23" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page22a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex19z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos19" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def19" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra19" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+<!--
+<div class="pages" id="page23" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-GL-103 Teaching Pack 1</h1>
+  </div>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex20a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page23a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+      <a href="#img20pop" data-rel="popup"><img src="20.jpg" alt="pic20" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img20pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="20.jpg" alt="pic20"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint20"></span>
+      <br/>
+      <br/>
+      <span id="hint20a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint20b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page22" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page24" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page23a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex20z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos20" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def20" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra20" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+
+<div class="pages" id="page24" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-GL-103 Teaching Pack 1</h1>
+  </div>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex21a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page24a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+      <a href="#img21pop" data-rel="popup"><img src="21.jpg" alt="pic21" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img21pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="21.jpg" alt="pic21"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint21"></span>
+      <br/>
+      <br/>
+      <span id="hint21a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint21b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page23" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page25" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page24a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex21z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos21" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def21" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra21" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+
+<div class="pages" id="page25" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-GL-103 Teaching Pack 1</h1>
+  </div>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex22a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page25a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+     <a href="#img22pop" data-rel="popup"><img src="22.jpg" alt="pic22" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img22pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="22.jpg" alt="pic22"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint22"></span>
+      <br/>
+      <br/>
+      <span id="hint22a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint22b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page24" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page26" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page25a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex22z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos22" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def22" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra22" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+
+<div class="pages" id="page26" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-GL-103 Teaching Pack 1</h1>
+  </div>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex23a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page26a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+     <a href="#img23pop" data-rel="popup"><img src="23.jpg" alt="pic23" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img23pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="23.jpg" alt="pic23"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint23"></span>
+      <br/>
+      <br/>
+      <span id="hint23a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint23b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page25" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page27" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page26a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex23z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos23" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def23" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra23" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+
+<div class="pages" id="page27" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-GL-103 Teaching Pack 1</h1>
+  </div>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex24a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page27a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+      <a href="#img24pop" data-rel="popup"><img src="24.jpg" alt="pic24" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img24pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="24.jpg" alt="pic24"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint24"></span>
+      <br/>
+      <br/>
+      <span id="hint24a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint24b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page26" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page28" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page27a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex24z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos24" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def24" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra24" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+
+
+<div class="pages" id="page28" data-role="page" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>TPP-GL-103 Teaching Pack 1</h1>
+  </div>
+  <div data-role="content" data-inline="true">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<span></span>
+        </div>
+        <div class="ui-block-b">
+        	<br/>
+        	<span id="lex25a" style="font-size: x-large"></span>
+        </div>
+        <div class="ui-grid-c">
+        	<a href="#page28a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        </div>
+    <br/>
+	</div>
+    <div align="center">
+      <a href="#img25pop" data-rel="popup"><img src="25.jpg" alt="pic25" class="pic"/></a>
+      <div data-role="popup" class="photopop" id="img25pop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img src="25.jpg" alt="pic25"/>
+      </div>
+      <br/>
+      <br/>
+      <span id="hint25"></span>
+      <br/>
+      <br/>
+      <span id="hint25a"></span>
+      <span>Arabic:&nbsp;&nbsp;<span class="translation" id="hint25b" style="font-size: xx-large"></span></span></div>
+  </div>
+  	
+  <br/>
+  <br/>
+<div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a" >
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page27" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-role="button">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div align="center"><a href="#page50" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-role="button">Next</a>
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page28a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1 id="lex25z"></h1>
+  </div>
+  <div data-role="content"><br/>
+  	<div align="left"><span><b>part of speech:</b></span>
+  	  <span id="pos25" font-style: italic;"></span><br/><br/>
+  	  <span><b>definition:</b></span><br/>
+	<p id="def25" style="text-align: left; font-style: italic;"></p>
+    <br/>
+    <span><b>other information:</b></span>
+    <p id="xtra25" style="text-align: left; font-style: italic;">extra will go here</p>
+    </div>
+    <br/>
+  </div>
+  <div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a">
+    <h4><a href="#page2">back</a></h4>
+  </div>
+</div>
+-->
+
+<div data-role="page" id="page50" data-theme="a">
+  <div data-role="header">
+    <h1>Game Time</h1>
+  </div>
+  <div data-role="content">
+  	<br/>
+  	<br/>
+  	<br/>
+  	<br/>
+  	<ul data-role="listview" data-theme="a">
+    	<li class="listdivider" data-role="divider" data-theme="d">Multi-player Games</li>
+  		<li><a>Word Finder (coming soon)</a></li>
+    	<li><a href="#page53">Password</a></li>
+        <li class="listdivider" data-role="divider" data-theme="d">One-Player Games</li>
+        <li><a href="#page55">Scrambler</a></li>
+        <li><a href="#page57">Vowel Trouble</a></li>
+        <li><a href="#page59">Match-It!</a></li>
+   	</ul>
+  </div>
+  <div data-role="footer" class="ui-bar" data-position="fixed">
+    <div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a></div>
+  </div>
+</div>
+
+<div data-role="page" id="page51">
+  <div data-role="header">
+    <h1>Play Time</h1>
+  </div>
+  <div data-role="content">
+    <p align="center">&nbsp;&nbsp;Word Finder Rules:
+    </p>
+   	<p align="justify">&bull;&nbsp; You have several words when the game begins.<br/><br/>
+      &bull;&nbsp;&nbsp;Add to your list by getting words from other students.<br/><br/>
+      &bull;&nbsp;&nbsp;You may also ask for the spelling.<br/><br/>
+      &bull;&nbsp;&nbsp;Add the new word in the text box and touch <b>enter</b>.<br/><br/>
+      &bull;&nbsp;&nbsp;The first person to enter all the words wins!!!<br/><br/>
+    </p>
+	  <a href="#page52" onClick="randomStart();randomStart2();" data-role="button" data-inline="true" data-theme="a">Start Game</a>
+  </div>
+  <div data-role="footer" class="ui-bar" data-position="fixed">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div>
+        	  <div><a href="#page50" data-icon="arrow-l" data-iconpos"left" data-inline="true" data-role="button" data-theme="a">Back to Games</a></div>
+   	      </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div>
+        	  <div>
+        	    <div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a></div>
+        	  </div>
+   	      </div>
+        </div>
+        <div class="ui-grid-c">
+        	<div>
+        	  <div></div>
+   	      </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page52">
+  <div data-role="header">
+    <h1>Word Finder</h1>
+  </div>
+  <div data-role="content" data-theme="d">
+        
+      <div class="ui-grid-a" data-role="controlgroup" align="center">
+     	<div class="ui-block-a">
+     		<a id="lex0b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def0b" data-role="button" data-theme="d"></a>
+     	</div>
+        <div class="ui-block-a">
+     		<a id="lex1b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def1b" data-role="button" data-theme="d"></a>
+     	</div>
+		<div class="ui-block-a">
+     		<a id="lex2b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def2b" data-role="button" data-theme="d"></a>
+     	</div>
+        <div class="ui-block-a">
+     		<a id="lex3b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def3b" data-role="button" data-theme="d"></a>
+     	</div>
+ 	    <div class="ui-block-a">
+     		<a id="lex4b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def4b" data-role="button" data-theme="d"></a>
+     	</div>
+        <div class="ui-block-a">
+     		<a id="lex5b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def5b" data-role="button" data-theme="d"></a>
+     	</div>
+		<div class="ui-block-a">
+     		<a id="lex6b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def6b" data-role="button" data-theme="d"></a>
+     	</div>
+        <div class="ui-block-a">
+     		<a id="lex7b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def7b" data-role="button" data-theme="d"></a>
+     	</div>
+        
+        <div class="ui-block-a"> 
+        	<a id="lex8b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def8b" data-role="button" data-theme="d"></a>
+     	</div>
+        <div class="ui-block-a">
+     		<a id="lex9b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def9b" data-role="button" data-theme="d"></a>
+     	</div>
+		<div class="ui-block-a">
+     		<a id="lex10b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def10b" data-role="button" data-theme="d"></a>
+     	</div>
+        <div class="ui-block-a">
+     		<a id="lex11b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def11b" data-role="button" data-theme="d"></a>
+     	</div>
+ 	    <div class="ui-block-a">
+     		<a id="lex12b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def12b" data-role="button" data-theme="d"></a>
+     	</div>
+        <div class="ui-block-a">
+     		<a id="lex13b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def13b" data-role="button" data-theme="d"></a>
+     	</div>
+		<div class="ui-block-a">
+     		<a id="lex14b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def14b" data-role="button" data-theme="d"></a>
+     	</div>
+        <div class="ui-block-a">
+     		<a id="lex15b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def15b" data-role="button" data-theme="d"></a>
+     	</div>
+        
+        <div class="ui-block-a">
+     		<a id="lex16b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def16b" data-role="button" data-theme="d"></a>
+     	</div>
+        <div class="ui-block-a">
+     		<a id="lex17b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def17b" data-role="button" data-theme="d"></a>
+     	</div>
+ 	    <div class="ui-block-a">
+     		<a id="lex18b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def18b" data-role="button" data-theme="d"></a>
+     	</div>
+        <div class="ui-block-a">
+     		<a id="lex19b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def19b" data-role="button" data-theme="d"></a>
+     	</div>
+		<div class="ui-block-a">
+     		<a id="lex20b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def20b" data-role="button" data-theme="d"></a>
+     	</div>
+        <div class="ui-block-a">
+     		<a id="lex21b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def21b" data-role="button" data-theme="d"></a>
+     	</div>
+        
+        <div class="ui-block-a">
+     		<a id="lex22b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def22b" data-role="button" data-theme="d"></a>
+     	</div>
+        <div class="ui-block-a">
+     		<a id="lex23b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def23b" data-role="button" data-theme="d"></a>
+     	</div>
+		<div class="ui-block-a">
+     		<a id="lex24b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def24b" data-role="button" data-theme="d"></a>
+     	</div>
+        <div class="ui-block-a">
+     		<a id="lex25b" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a id="def25b" data-role="button" data-theme="d"></a>
+     	</div>
+        
+      </div>
+  
+	 <div align="center"><span id="G1prompt">&nbsp;</span>
+  	  <input id="game1input"></input>
+  	</div>
+  
+  	<button onClick="G1input1()" data-inline=true>Word</button>
+    </div>
+  
+  <div data-role="footer" class="ui-bar" data-position="fixed">
+    <h4><a href="#page" onClick="G1reset();">Main Menu</a></h4>
+  </div>
+</div>
+
+<div data-role="page" id="page53">
+  <div data-role="header">
+    <h1>Password</h1>
+  </div>
+  <div data-role="content">
+  	<br/>
+    <p align="center">Rules:</p>
+    <div data-role="controlgroup" justify="left">
+   	<p>Password is for two players.</p>
+    <p>One player gives hints and the other guesses the word.</p>
+    <p>Guess as many words as you can in one minute.</p>
+    <p>Switch roles after each round.</p>
+    </div>
+   
+  </div>
+  
+  <div>
+     <input id="g2input" placeholder="Type your partner's name here and press 'Enter Name'"></input>
+     <button onClick="g2name()" data-inline=true data-theme="a" data-icon="check">Enter Name</button>
+  </div>
+  
+  <a href="#page54" onClick="g2Start();" data-inline="true" data-role="button" data-theme="a">Start Game</a>
+  
+  <div data-role="footer" class="ui-bar" data-position="fixed">
+     <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page50" data-icon="back" data-iconpos="left" data-inline="true" data-role="button" data-theme="a">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+          <div class="ui-grid-c">
+      	  </div>
+        </div>
+	</div>
+</div>
+
+<div data-role="page" id="page54" data-theme="d">
+  <div data-role="header">
+    <span>High Score:&nbsp;<span id="g2highscore">0</span></span>
+  </div>
+  
+  <div data-role="content">
+  	
+  	<div data-role="controlgroup" data-rel="horizontal">
+    	   <div align="center">
+    	     <button data-theme="d" data-inline=true id="g2playername">Player's Name</button>
+    	     <table class="g2trans" width="175" height="65" data-inline=true>
+    	        <tr>
+    	         <th width="45" id="g2score" style="font-size: xx-large;" scope="col">0</th>
+   	           </tr>
+    	       <tr>
+    	         <th width="225" height="45" id="g2word" style="font-size: xx-large;" scope="col"></th>
+   	           </tr>
+    	       </table>
+  	       </div>
+    
+    </div>
+    
+    <div>
+  	<button onClick="g2correct();" data-theme="d" data-inline="true">Correct</button>
+  	<button onClick="g2pass();"data-theme="d" data-inline="true">Pass</button>
+  	<button onClick="g2startstop();"data-theme="d" data-inline="true">Start</button>
+    </div>
+    
+    
+    <div data-role="collapsible-set" data-theme="a">
+
+	<div data-role="collapsible">
+  	<h3 onClick="g2hint1();">Hint 1</h3>
+ 	<p id="g2hint1"></p>
+
+	</div>
+    
+    <div data-role="collapsible">
+
+  	<h3 onClick="g2hint2();">Hint 2</h3>
+ 	<p id="g2hint2"></p>
+
+	</div>
+    
+    <div data-role="collapsible">
+
+  	<h3 onClick="g2hint3();">Hint 3</h3>
+ 	<p id="g2hint3"></p>
+
+	</div>
+
+
+    
+    <a href="#page54b" data-role="button" data-inline="true" data-theme="a">Switch to answer questions</a>
+  	
+  </div>
+  
+   <div data-role="footer" class="ui-bar" data-position="fixed">
+     <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page50" data-icon="back" data-iconpos="left" data-inline="true" data-role="button" data-theme="a">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+          <div class="ui-grid-c">
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page54b" data-theme="d">
+  <div data-role="header">
+    <span>Guess the word</span>
+  </div>
+  
+  <div data-role="content">
+    
+   <a href="#page54" data-role="button" data-inline="true" data-theme="a">Switch to ask questions</a>
+   
+   <div data-role="controlgroup" data-rel="horizontal">
+    	   <div align="center">
+    	     <table width="225" height="65" border="0" cellpadding="0" data-inline=true>
+    	       <tr>
+    	         <th width="200" bgcolor="#FFFFFF" id="g2pic" style="font-size: xx-large; color: #000;" scope="col"></th>
+   	           </tr>
+    	       </table>
+  	       </div>
+    </div>
+    
+     <div class="ui-grid-a" data-role="controlgroup" align="center">
+     	<div class="ui-block-a">
+     		<a onClick="g2pic0();" id="g2lex0" data-role="button" data-theme="d"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a onClick="g2pic1();" id="g2lex1" data-role="button" data-theme="d"></a>
+     	</div>
+     	<div class="ui-block-a">
+       		<a onClick="g2pic2();" id="g2lex2" data-role="button" data-theme="d"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a onClick="g2pic3();" id="g2lex3" data-role="button" data-theme="d"></a>
+    	 </div>
+     	<div class="ui-block-a">
+       		<a onClick="g2pic4();" id="g2lex4" data-role="button" data-theme="d"></a>
+    	</div>
+     	<div class="ui-block-b">
+       		<a onClick="g2pic5();" id="g2lex5" data-role="button" data-theme="d"></a>
+     	</div>	
+     	<div class="ui-block-a">
+     		<a onClick="g2pic6();" id="g2lex6" data-role="button" data-theme="d"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a onClick="g2pic7();" id="g2lex7" data-role="button" data-theme="d"></a>
+     	</div>
+     	<div class="ui-block-a">
+       		<a onClick="g2pic8();" id="g2lex8" data-role="button" data-theme="d"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a onClick="g2pic9();" id="g2lex9" data-role="button" data-theme="d"></a>
+    	 </div>
+     	<div class="ui-block-a">
+       		<a onClick="g2pic10();" id="g2lex10" data-role="button" data-theme="d"></a>
+    	</div>
+     	<div class="ui-block-b">
+       		<a onClick="g2pic11();" id="g2lex11" data-role="button" data-theme="d"></a>
+     	</div>
+     	<div class="ui-block-a">
+     		<a onClick="g2pic12();" id="g2lex12" data-role="button" data-theme="d"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a onClick="g2pic13();" id="g2lex13" data-role="button" data-theme="d"></a>
+     	</div>
+     	<div class="ui-block-a">
+       		<a onClick="g2pic14();" id="g2lex14" data-role="button" data-theme="d"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a onClick="g2pic15();" id="g2lex15" data-role="button" data-theme="d"></a>
+    	 </div> 
+         <div class="ui-block-a">
+       		<a onClick="g2pic16();" id="g2lex16" data-role="button" data-theme="d"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a onClick="g2pic17();" id="g2lex17" data-role="button" data-theme="d"></a>
+    	 </div>  
+         <div class="ui-block-a">
+       		<a onClick="g2pic18();" id="g2lex18" data-role="button" data-theme="d"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a onClick="g2pic19();" id="g2lex19" data-role="button" data-theme="d"></a>
+    	 </div>   
+         <div class="ui-block-a">
+       		<a onClick="g2pic20();" id="g2lex20" data-role="button" data-theme="d"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a onClick="g2pic21();" id="g2lex21" data-role="button" data-theme="d"></a>
+    	 </div>   	
+         <div class="ui-block-a">
+       		<a onClick="g2pic22();" id="g2lex22" data-role="button" data-theme="d"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a onClick="g2pic23();" id="g2lex23" data-role="button" data-theme="d"></a>
+    	 </div>  
+         <div class="ui-block-a">
+       		<a onClick="g2pic24();" id="g2lex24" data-role="button" data-theme="d"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a onClick="g2pic25();" id="g2lex25" data-role="button" data-theme="d"></a>
+    	 </div>   	 		 	  	
+   </div>
+  
+  
+   <div data-role="footer" class="ui-bar" data-position="fixed">
+     <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page50" data-icon="back" data-iconpos="left" data-inline="true" data-role="button" data-theme="a">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+          <div class="ui-grid-c">
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page55" data-theme="d">
+  <div data-role="header">
+    <h1>Scrambler</h1>
+  </div>
+  <div data-role="content">
+    <p align="center">&nbsp;&nbsp;Rules:
+    </p>
+    <div data-role="controlgroup" align="left">
+   	<p>Scrambler is a one-player game.</p>
+    <p>The letters in each word are scrambled.</p>
+    <p>Type the word in the text box and touch 'Enter'.</p>
+    <p>Touch the hint buttons if you need help</p>
+    <p>You receive fewer points when you get help.</p>
+    </div>
+
+  	<br/>
+  	<br/>
+	  <a href="#page56" onClick="randomStart();" data-role="button" data-inline="true" data-theme="a">Start Game</a>
+  </div>
+  <div data-role="footer" class="ui-bar" data-position="fixed">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page50" data-icon="back" data-iconpos="left" data-inline="true" data-role="button" data-theme="a">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+          <div class="ui-grid-c">
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div id="page56" data-role="page" data-theme="a">
+	<div data-role="header">
+    	<h1>Score:&nbsp;<span id="G3score"></span></h1>
+	</div>
+
+	<div data-role="content">  
+
+		<div class="ui-grid-b">
+    		<div class="ui-block-a">
+        		<span></span>
+       	 	</div>
+        	<div class="ui-block-b">
+        		<br/>
+        		<button onClick="scramble();" data-theme="a" data-inline=true>new word</button>
+        	</div>
+        	<div class="ui-grid-c">
+        		<a href="#page56a" data-icon="info" data-iconpos="notext" data-inline="true" data-rel="dialog" data-role="button" data-theme="a"></a>
+        	</div>
+    	<br/>
+		</div>
+
+    	<div data-role="controlgroup" data-rel="horizontal">
+    	   <div align="center">
+    	     <table width="275" height="60" border="0" cellpadding="0" data-inline=true>
+    	       <tr>
+    	         <th width="275" bgcolor="#FFFFFF" id="scrambled" style="font-size: xx-large; color: #000;" scope="col"></th>
+   	           </tr>
+    	     </table>
+  	       </div>
+    	</div>
+    
+		<div data-role="collapsible-set" data-theme="a">
+
+			<div data-role="collapsible">
+  				<h3 onClick="G3hint1();">Hint 1</h3>
+ 				<p id="G3H1"></p>
+
+			</div>
+    
+    		<div data-role="collapsible">
+
+  				<h3 onClick="G3hint2();">Hint 2</h3>
+ 				<p id="G3H2"></p>
+
+			</div>
+    
+    		<div data-role="collapsible">
+
+  				<h3 onClick="G3hint3();">Hint 3</h3>
+ 				<p id="G3H3" class="translation"></p>
+
+			</div>
+    
+    		<div data-role="collapsible">
+
+  				<h3 onClick="G3hint4();">Hint 4</h3>
+ 				<p id="G3H4"></p>
+
+			</div>
+    
+    	</div>
+
+    	<div align="center">
+    		  <input id="game3input" placeholder="type word here" data-theme="a"></input>
+              <button onClick="G3scoring()" data-inline=true data-theme="a">Enter Word</button>
+    	</div>
+    	
+    	</div>
+      
+       <div data-role="footer" class="ui-bar" data-position="fixed" data-theme="a">
+			<div class="ui-grid-b">
+    			<div class="ui-block-a">
+        			<div align="center"><a href="#page50" data-icon="back" data-iconpos="left" data-inline="true" data-role="button" data-theme="a" onClick="G3scoring()">Back</a>
+      	  			</div>
+    			</div>
+        		<div class="ui-block-b">
+        			<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a" onClick="G3scoring()"></a>
+      	 		</div>
+          		<div class="ui-grid-c">
+      	  		</div>
+        	</div>
+	   </div>
+
+	</div>
+
+</div>
+
+<div class="dialogs" data-role="page" id="page56a" data-overlay-theme="b" data-theme="d">
+  <div data-role="header" data-theme="a">
+    <h1>Scrambler Rules</h1>
+  </div>
+  <div data-role="content">
+    <div data-role="controlgroup" align="left">
+   	<p>Scrambler is a one-player game.</p>
+    <p>The letters in each word are mixed up.</p>
+    <p>Type the word in the text box and touch 'Enter'.</p>
+    <p>Touch the hint buttons if you need help.</p>
+    <p>You receive fewer points when you get help.</p>
+    </div>
+</div>
+  <div data-role="footer" data-theme="a">
+   <h4><a href="#page2"></a></h4>
+  </div>
+</div>
+
+  
+<div data-role="page" id="page57" data-theme="d">
+  <div data-role="header">
+    <h1>Vowel Trouble</h1>
+  </div>
+  
+  	 <div data-role="content">
+  		<br/>
+    	<p align="center">Rules:
+    	</p>
+    	<div data-role="controlgroup" align="left">
+   			<p>Vowel Trouble is a one-player game.</p>
+    		<p>The vowels of each word are missing.</p>
+    		<p>Spell the word and press 'Enter'.</p>
+    		<p>You receive 10 points if you spell the word correctly without help.</p>
+    		<p>If you need help, touch the help button to see the word for a second.</p>
+    		<p><em>Remember:</em>&nbsp; You receive fewer points each time you get help.</p>
+    	</div>
+  		<br/>
+	  <a href="#page58" onClick="randomStart();" data-role="button" data-inline="true" data-theme="a">Start Game</a></li> 
+     </div>
+  
+  	<div data-role="footer" class="ui-bar" data-position="fixed">
+    	<div class="ui-grid-b">
+    		<div class="ui-block-a">
+        		<div align="center"><a href="#page50" data-icon="back" data-iconpos="left" data-inline="true" data-role="button" data-theme="a">Back</a>
+      	  	</div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a></div>
+        </div>
+        	<div class="ui-grid-c">
+      	    </div>
+        </div>
+	</div>
+	</div>
+
+</div>
+
+<div id="page58" data-role="page" data-theme="a">
+<div data-role="header">
+    <span class="highscore">High Score:&nbsp;<span id="hiscoreg4" class="highscore">0</span></span> <br/> 
+  </div>
+<div data-role="content">  
+    	<div>
+          <div align="center">
+            <table width="150" border="1" cellpadding="0">
+              <tr>
+                <th height="45" bgcolor="#FFFFFF" id="G4score" style="font-size: xx-large; color: #000;" scope="col">0</th>
+              </tr>
+            </table>
+          </div>
+    	</div>
+    
+       
+    <div data-role="controlgroup" data-rel="horizontal">
+    	   <div align="center">
+    	     <button onClick="vowelless();" data-theme="a" data-inline=true>new word</button>
+    	     <table width="275" height="65" border="1" cellpadding="0" data-inline=true>
+    	       <tr>
+    	         <th width="275" bgcolor="#FFFFFF" id="novowels" style="font-size: xx-large; color: #000;" scope="col"></th>
+   	           </tr>
+    	       </table>
+  	       </div>
+    </div>
+    
+     <input id="game4input" data-type="search" placeholder="type word here"></input>
+     <button onClick="G4scoring()" data-inline=true data-theme="a">Enter</button>
+    
+       <div data-role="controlgroup" data-rel="horizontal">
+    	   <div align="center">
+    	     <button onClick="vowelhelp();" data-theme="a" data-inline=true>help</button>
+    	     <table width="275" height="65" border="1" cellpadding="0" data-inline=true>
+    	       <tr>
+    	         <th width="275" bgcolor="#FFFFFF" id="vowelled" style="font-size: xx-large; color: #000;" scope="col"></th>
+   	           </tr>
+    	       </table>
+  	       </div>
+    </div>
+    
+   
+     <div data-role="footer" class="ui-bar" data-position="fixed">
+     <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page50" data-icon="back" data-iconpos="left" data-inline="true" data-role="button" data-theme="a">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+          <div class="ui-grid-c">
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div data-role="page" id="page59" data-theme="d">
+  <div data-role="header">
+    <h1>Match-It!</h1>
+  </div>
+  <div data-role="content">
+    
+    <br/>
+    <p align="center">&nbsp;&nbsp;Rules:
+    </p>
+    <div data-role="controlgroup" align="left">
+   	<p>Match-It! is a one-player game.</p>
+    <p>Touch the word that goes with the picture.</p>
+	<p>You receive points for correct answers.</p>
+    <p>You lose points if you touch the wrong word.</p>
+    </div>
+    <br/>
+    <br/>
+  	<ul data-role="listview" data-theme="a">
+	  <a href="#page60" onClick="randPic2();" data-role="button" data-theme="a" data-inline="true">Start Game</a>
+   	</ul>
+  </div>
+  <div data-role="footer" class="ui-bar" data-position="fixed">
+    <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page50" data-icon="back" data-iconpos="left" data-inline="true" data-role="button" data-theme="a">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+          <div class="ui-grid-c">
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
+
+<div id="page60" data-role="page" data-theme="a">
+<div data-role="header" data-position="fixed">
+    <h1>Score:&nbsp;<span id="g5score">0</span></h1>
+  </div>
+<div data-role="content">    
+    	
+         
+    <div data-role="controlgroup" data-rel="horizontal">
+    	   <div align="center">
+    	     <button onClick="randPic2()" data-theme="a" data-inline=true>new picture</button>
+    	     <br/>	     
+  			 <a href="#matchpop" data-rel="popup"><img id="imagematch1" src="2.jpg" alt="pic2" class="pic"/></a>
+      			<div data-role="popup" class="photopop" id="matchpop">
+      		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+      		<img id="imagematch2" src="3.jpg" alt="pic1"/>
+      		</div>       
+      </div>
+  	        
+    </div>
+    
+    <div class="ui-grid-a" data-role="controlgroup" align="center">
+     	<div class="ui-block-a">
+     		<a href="#" onClick="g5lex0()" id="g5lex0" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a href="#" onClick="g5lex1()" id="g5lex1" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-a">
+       		<a href="#" onClick="g5lex2()" id="g5lex2" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a href="#" onClick="g5lex3()" id="g5lex3" class="match" data-role="button" data-theme="a"></a>
+    	 </div>
+     	<div class="ui-block-a">
+       		<a href="#" onClick="g5lex4()" id="g5lex4" class="match" data-role="button" data-theme="a"></a>
+    	</div>
+     	<div class="ui-block-b">
+       		<a href="#" onClick="g5lex5()" id="g5lex5" class="match" data-role="button" data-theme="a"></a>
+     	</div>	
+     	<div class="ui-block-a">
+     		<a href="#" onClick="g5lex6()" id="g5lex6" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a href="#" onClick="g5lex7()" id="g5lex7" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-a">
+       		<a href="#" onClick="g5lex8()" id="g5lex8" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a href="#" onClick="g5lex9()" id="g5lex9" class="match" data-role="button" data-theme="a"></a>
+    	 </div>
+     	<div class="ui-block-a">
+       		<a href="#" onClick="g5lex10()" id="g5lex10" class="match" data-role="button" data-theme="a"></a>
+    	</div>
+     	<div class="ui-block-b">
+       		<a href="#" onClick="g5lex11()" id="g5lex11" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-a">
+     		<a href="#" onClick="g5lex12()" id="g5lex12" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-b">
+       		<a href="#" onClick="g5lex13()" id="g5lex13" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+     	<div class="ui-block-a">
+       		<a href="#" onClick="g5lex14()" id="g5lex14" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a href="#" onClick="g5lex15()" id="g5lex15" class="match" data-role="button" data-theme="a"></a>
+    	 </div>  
+         <div class="ui-block-a">
+       		<a href="#" onClick="g5lex16()" id="g5lex16" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a href="#" onClick="g5lex17()" id="g5lex17" class="match" data-role="button" data-theme="a"></a>
+    	 </div>  
+         <div class="ui-block-a">
+       		<a href="#" onClick="g5lex18()" id="g5lex18" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a href="#" onClick="g5lex19()" id="g5lex19" class="match" data-role="button" data-theme="a"></a>
+    	 </div>  
+         <!--
+         <div class="ui-block-a">
+       		<a href="#" onClick="g5lex20()" id="g5lex20" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a href="#" onClick="g5lex21()" id="g5lex21" class="match" data-role="button" data-theme="a"></a>
+    	 </div>    	
+         <div class="ui-block-a">
+       		<a href="#" onClick="g5lex22()" id="g5lex22" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a href="#" onClick="g5lex23()" id="g5lex23" class="match" data-role="button" data-theme="a"></a>
+    	 </div>  
+         <div class="ui-block-a">
+       		<a href="#" onClick="g5lex24()" id="g5lex24" class="match" data-role="button" data-theme="a"></a>
+     	</div>
+      	<div class="ui-block-b">
+      		<a href="#" onClick="g5lex25()" id="g5lex25" class="match" data-role="button" data-theme="a"></a>
+    	 </div>  
+         -->
+   </div>
+    	
+    
+     <div data-role="footer" class="ui-bar" data-position="fixed">
+     <div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page50" data-icon="back" data-iconpos="left" data-inline="true" data-role="button" data-theme="a">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="a"></a>
+      	  </div>
+        </div>
+          <div class="ui-grid-c">
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
